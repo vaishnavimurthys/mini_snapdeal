@@ -1,0 +1,31 @@
+<!DOCTYPE Html>
+<html>
+<head>
+	{%if title %}
+	<title>{{title}}</title>
+	{% else %}
+	<title>snapdeal</title>
+	{% endif %}
+</head>
+<body>
+<center><p> welcometo mini-snapdeal</p></center>
+{% block body %}
+
+{%endblock body %}
+</body>
+<footer>
+	<p> &copy; Mini Snapdeal 2019</p>
+	{%if title=='contact' %}
+	<a href="/contact">contact</a><br>
+	{% endif %}
+	{% if title!='about' %}
+	<a href="/about">about</a><br>
+	{% endif %}
+	{% if title!='home' %}
+	<a href="/">home</a>
+	{% endif %}
+
+	{% if session %}
+	<a href ="/logout">logout</a>
+	{% endif %}
+</footer>
