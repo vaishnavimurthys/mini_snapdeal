@@ -2,20 +2,52 @@
 
 {% block body %}
 
-<p>this is homepage</p>
+<p>This is Homepage</p>
 {% if session %}
 
-<p>welcome!you have signed in!</p>
+<center><p>welcome{{session['username']}}!</p>
+<p>you have signed in as a :) {{session['c_type']}}</p></center>
 
+{% if session['c_type'] =='buyer' %}
+<p><a href="#">click here</a> to look at the products available for sale</p>
+<p><a href="#">click here </a> to look at your cart</p>
+
+
+{% else %}
+<p>Add product below<p>
+<center>
+<form action="/products" method="POST">
+<input type="text" name="name" placeholder="enter product name...">
+<input type="text" name="description" placeholder="describe your product...">
+<input type="text" name="price" placeholder="enter product price..">
+<input type="submit" value="Add product">
+
+
+</form>
+</center>
+
+<p><a href="#"> click here </a> to look at your products you've added to the store</p>
+{% endif %}
 {% else %}
 
 <p>login!</p>
 <form action="/login" method="POST">
-	<input type="text" name="username" placeholder="enter username..."><br>
-    <input type="password" name="password" placeholder="enter password...">
-    <br>
+<input type="text" name="username" placeholder="enter username..."><br>
+    <input type="password" name="password" placeholder="enter password"><br>
    <input type="submit" value="login">
    
 </form>
+<p> Don't have an account ? Sign up! <p>
+
+<form action="/signup" method ="POST">
+<input type="text" name="username" placeholder="enter username....">
+<input type="password" name="password1" placeholder="enter password">
+<input type="" name="password2" placeholder="re enter passwsword">
+<p>Customer type :</p><br>
+<p>Buyer</p><input type="radio" name="type" value="buyer">
+<p>Seller</p><input type="radio" name="type" value="seller">
+
+<input type="submit" value="Create account">
+</form>
 {% endif %}
-{% endblock %}
+{% endblock body %}
